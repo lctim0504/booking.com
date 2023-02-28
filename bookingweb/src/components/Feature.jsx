@@ -2,6 +2,7 @@ import React from 'react'
 import Categories from '../subcomponents/Categories'
 import "./feature.scss"
 import { CategoriesCities, CategoriesType } from '../data'
+import Postcards from '../subcomponents/PostCards'
 
 const Feature = () => {
     return (
@@ -14,7 +15,7 @@ const Feature = () => {
                     <Categories dataArray={CategoriesType} />
                 </div>
                 <div className="listItems">
-                    {/* <Postcards /> */}
+                    <Postcards />
                 </div>
                 <div className="listTitle">
                     <h3>探索臺灣</h3>
