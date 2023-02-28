@@ -1,21 +1,143 @@
 .header {
-    background-color:var(--primary-color);
+    background-color: var(--primary-color);
     display: flex;
     justify-content: center;
     padding: 0px 20px;
+    position: relative;
+
     .headerContainer {
         color: white;
         width: 100%;
         max-width: 1024px;
         margin: 20px 0px 100px 0px; //margin 四個為上 左 下 右
+
         .headerTitle {
             font-size: 45px;
         }
-        .headerDes{
-            margin-top: 10px ;
+
+        .headerDes {
+            margin-top: 10px;
         }
+
         .headerSearchBar {
-           
+            position: absolute;
+            bottom: -30px;
+            height: 55px; //設定SearchBar高度
+            width: 95%; //原本設100%雖然此本專案沒有做到RWD網頁 但發現他超過太誇張修正為95%
+            max-width: 1024px; //這邊一樣會希望他能不要太寬 所以最寬1024px
+            display: flex; //打上df 讓這邊的都可以橫著排
+            align-items: center; //df 後可以打aic讓他上下置中
+            background-color: rgb(223, 130, 0); //這邊會特別下面圖層講解
+            border: none;
+            border-radius: 5px; //讓他有圓圓角
+
+            svg {
+                color: lightgray; //特別注意這邊fontawsome是svg檔
+                font-size: 24px; //所以可以在這邊控制全部icon屬性
+                margin-left: 10px;
+            }
+
+            input {
+                border: none; //輸入欄這邊下面也會特別說
+                outline: none;
+                width: 100%;
+                font-size: 16px;
+                text-overflow: ellipsis; //特殊用法要搭配下面width 
+            }
+
+            //你要去哪裡？ => 你要去... 不會超出版型
+            .SearchBarItem:first-child {
+                //第一個SearchBarItem
+                width: calc(34% - 20px); //加上這個，可以讓”你要去哪裡“縮小的比別人快
+            }
+
+            .SearchBarItem {
+                height: 50px; //這邊高度我設略小於上面headerSearchBar55px的50px
+                width: 320px; //寬大約抓最大寬1024px的三等份之類的 略小情況下面表示
+                margin-left: 2px; //Item直接的空隙
+                display: flex;
+                align-items: center;
+                gap: 10px; //Item裡面中icon 與input 或是 text的間距
+                color: black;
+                background-color: #fff; //欄位顏色
+                border-radius: 2px;
+                cursor: pointer; //讓他們觸控時鼠標會變顏色
+            }
+
+            .SearchBarBtn {
+                //最後就基本btn設計
+                border: none;
+                margin: 0px 2px 0px 2px;
+                width: 60px;
+                height: 50px;
+                border-radius: 2px;
+                background-color: var(--primary-color);
+                //有問題的記得去看app.scss裡面有沒有放:root{變色主色調那邊} 可以看前幾天的文章
+                color: white;
+                cursor: pointer;
+            }
+
+            .calendar {
+                position: absolute; //這邊一樣用絕對定位讓他超出container往下
+                top: 56px;
+                border: 1px lightgray solid;
+                box-shadow: 0px 0px 15px lightgray;
+            }
+
+            //box-shadow增加陰影與邊線
+            .ConditionsContainer {
+                position: absolute; //一樣絕對定位
+                top: 60px;
+                right: 0;
+                width: auto;
+                background-color: white;
+                box-shadow: 0px 0px 15px lightgray;
+                border-radius: 5px;
+                padding: 10px 40px;
+                cursor: default; //靜止他一靠近就變point
+
+                .condition {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    //這邊將文字（小孩）與conditionCounter 分開 一左一右
+                    width: 400px;
+                    height: 60px;
+
+                    p {
+                        //小孩下面 的<p>表顯示歲數
+                        font-size: 14px;
+                        color: gray;
+                    }
+
+                    .conditionCounter {
+                        display: flex;
+                        width: 100px;
+                        justify-content: space-between;
+                        //這邊左右分開的是 減號btn 數字 加號btn 
+                        align-items: center;
+
+                        //下上對齊
+                        .conditionCounterButton {
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 2px;
+                            color: var(--primary-color);
+                            background-color: white;
+                            border: 1px solid var(--primary-color);
+                            cursor: pointer;
+
+                            &:hover {
+                                background-color: rgba(53, 164, 127, 0.1);
+                                //我讓他滑鼠過去時會有淡淡的淺綠色 
+                            }
+                            &:disabled {
+                                cursor: not-allowed;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
