@@ -1,42 +1,57 @@
 import React from 'react'
 import "./navbar.scss"
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBed, faCar, faPlane, faTaxi, faToriiGate } from '@fortawesome/free-solid-svg-icons'
-
-const Navbar = () => {
+import { Link } from 'react-router-dom'
+const Navbar = ({type}) => {
     return (
-        <div className='navbar'>
-            <div className='navbarContainer'>
-                <div className='lineOne'>
-                    <div className='left'>
-                        <span className='logo'>Tim.BOOKING</span>
+        <div className={`navbar ${type}`}>
+            <div className="navbarContainer ">
+                <div className="lineOne">
+                    <div className="left">
+                        <Link to="/" className='logo'>
+                            SAM.BOOKING
+                        </Link>
                     </div>
-                    <div className='right'>
-                        <div className='navButtonFlag'></div>
-                        <div className='navButtonTest'>測試</div>
-                        <div className='navButton'>註冊</div>
-                        <div className='navButton'>登入</div>
-                        <div className="lineTwo">
-                        </div>
+                    <div className="right">
+                        <button className='navButtonFlag' />
+                        <button className="navButtonNotif">使用webpack測試</button>
+                        {  type=="auth" ? <></> :<>
+                        <Link to="/register">
+                        <button className="navButton">註冊</button>
+                        </Link>  
+                        <Link to="/login">
+                        <button className="navButton">登入</button>
+                        </Link>  
+                        </>
+                         }
                     </div>
                 </div>
-                <div className='lineTwo'>
+                {type=="auth"? <></> :
+                <div className="lineTwo">
                     <div className="item active">
-                        <FontAwesomeIcon icon={faBed} /><span >住宿</span>
+                        <FontAwesomeIcon icon={faBed} />
+                        <span >住宿</span>
                     </div>
                     <div className="item">
-                        <FontAwesomeIcon icon={faPlane} /><span >航班</span>
+                        <FontAwesomeIcon icon={faPlane} />
+                        <span >航班</span>
                     </div>
                     <div className="item">
-                        <FontAwesomeIcon icon={faCar} /><span >租車</span>
+                        <FontAwesomeIcon icon={faCar} />
+                        <span >租車</span>
                     </div>
                     <div className="item">
-                        <FontAwesomeIcon icon={faToriiGate} /><span >景點/活動</span>
+                        <FontAwesomeIcon icon={faToriiGate} />
+                        <span >景點/活動</span>
                     </div>
                     <div className="item">
-                        <FontAwesomeIcon icon={faTaxi} /><span >機場計程車</span>
+                        <FontAwesomeIcon icon={faTaxi} />
+                        <span >機場計程車</span>
                     </div>
                 </div>
+}
             </div>
         </div>
     )
