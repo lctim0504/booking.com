@@ -9,8 +9,10 @@ import * as locales from 'react-date-range/dist/locale';//用它來叫出不同�
 import { DateRange } from 'react-date-range';
 import format from 'date-fns/format';
 import { setDate } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
   //目的地
   const [destination, setDestination] = useState("");
   //日期
@@ -71,6 +73,12 @@ const Header = () => {
   const handleIncrease = (name) => {
     handleCounter(name, "increase");
   };
+
+  //
+  const handleSearchBarSubmit = () => {
+    navigate("/hotelsList", { state: { destination, dates, conditions } })
+  }
+
 
   console.log(destination, dates, conditions)
   return (
@@ -194,7 +202,7 @@ const Header = () => {
             )}
           </div>
           {/* 搜尋 */}
-          <button className='SearchBarBtn' >搜尋</button>
+          <button className='SearchBarBtn' onClick={handleSearchBarSubmit}>搜尋</button>
         </div>
       </div>
     </div>
