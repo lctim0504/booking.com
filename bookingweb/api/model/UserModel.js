@@ -20,4 +20,4 @@ const UserSchma = new mongoose.Schema({
         default:false,//就不用 required:true, 只要創建管理員身份時在特別上傳這部分
     },
 },{timestamps:true}) //這邊比hotels多了一個timestamps是為了紀錄創建時間戳章，通常後台會需要多再看到user者的創建時間
-export default mongoose.model("User",UserSchma)
+export default mongoose.model("UserModel",UserSchma)

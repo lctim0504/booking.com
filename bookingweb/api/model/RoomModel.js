@@ -22,4 +22,4 @@ const RoomSchema = new mongoose.Schema({
     }],//與紀錄01,02被訂走的時間，為到時候calendar紀錄的時間
 },{timestamps:true})
 
-export default mongoose.model("Room",RoomSchema)
+export default mongoose.model("RoomModel",RoomSchema)
