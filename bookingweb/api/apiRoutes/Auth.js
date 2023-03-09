@@ -1,8 +1,9 @@
 import express from "express"
+import { register } from "../routeController/User.js"
+
 const router = express.Router()
 
-router.get("/",(req,res)=>{
-    res.send("這邊是AuthApi End points連接點")
-})
+router.post("/login", login)
+router.post("/register", register)
 
 export default router
