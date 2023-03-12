@@ -1,6 +1,6 @@
 import express from "express"
 import { isAdmin } from "../JWT_token.js"
-import { createHotel, deleteHotel, getHotel, updatedHotel } from "../routeController/Hotel.js"
+import { createHotel, deleteHotel, getAllHotel, getHotel, getHotelCount, updatedHotel } from "../routeController/Hotel.js"
 const router = express.Router()
 
 /*
@@ -17,6 +17,8 @@ router.post("/", [ async (req, res) => {
 */
 
 router.get("/find/:id", getHotel)
+router.get("/", getAllHotel)
+router.get("/filter", getHotelCount)
 router.post("/", isAdmin, createHotel)
 router.put("/:id", updatedHotel)
 router.delete("/:id", isAdmin, deleteHotel)

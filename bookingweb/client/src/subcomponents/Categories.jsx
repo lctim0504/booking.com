@@ -1,9 +1,10 @@
-import React from 'react'
-import { CategoriesType } from '../data'
+import useFetch from '../hooks/UseFetch'
 import "./categories.scss"
-const Categories = ({dataArray}) => {
+
+const Categories = ({ dataArray, url }) => {
+    const { data, loading, error } = useFetch(url)
     return (
-        <div className='listContainer'>
+        <div className='categories'>
             {dataArray.map((item, index) =>
                 <div className="item" key={index}>
                     <img src={item.img} alt="" />
@@ -12,13 +13,11 @@ const Categories = ({dataArray}) => {
                             {item.name}
                         </div>
                         <div className="desc">
-                            {item.amount}
+                            {`${data[index]}間住宿`}
                         </div>
                     </div>
-                </div>
-            )}
+                </div>)}
         </div>
     )
 }
-
 export default Categories
