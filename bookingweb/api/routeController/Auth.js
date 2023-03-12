@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs"
 import UserModel from "../model/UserModel.js";
+import jwt from "jsonwebtoken"
 
 export const register = async (req, res) => {
     const registerData = req.body
@@ -28,15 +29,22 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
     const loginData = req.body
     try {
-        const userData = await UserModel.findOne({ username: loginData.username }) || await UserModel.findOne({ email: loginData.username });
+        const userData = await UserModel.findOne({ username: loginData.username }) || await UserModel.findOne({ email: loginData.email });
         if (!userData) {
-            return res.status(500).json({ error: "loginData Existed" })
+            return res.status(404).json({ error: "loginData not exists" })
         }
         const isPasswordCorrect = await bcrypt.compare(loginData.password, userData.password)
         if (!isPasswordCorrect) {
             return res.status(404).json({ error: "password Incorrect" })
         }
-        res.status(200).json(`${userData.username}登入成功`)
+        // 產生一個專屬於這個用戶的TOKEN憑證
+        const token = jwt.sign({ id: userData._id, isAdmin: userData.isAdmin }, process.env.JWT) 
+        console.log(token);
+        res
+            .cookie('JWT_token', token, {
+                httpOnly: true
+            })
+            .status(200).json(`${userData.username}登入成功`)
     } catch (error) {
         console.log("Login fail:" + error);
         res.status(500).json({ error: "Login fail. Something went wrong!" })

@@ -1,6 +1,6 @@
 import express from "express"
+import { isAdmin } from "../JWT_token.js"
 import { createHotel, deleteHotel, getHotel, updatedHotel } from "../routeController/Hotel.js"
-
 const router = express.Router()
 
 /*
@@ -16,9 +16,9 @@ router.post("/", [ async (req, res) => {
 }] ) =>將[]間拉出去
 */
 
-router.get("/find/:id",getHotel)
-router.post("/",createHotel)
-router.put("/:id",updatedHotel)
-router.delete("/:id",deleteHotel)
+router.get("/find/:id", getHotel)
+router.post("/", isAdmin, createHotel)
+router.put("/:id", updatedHotel)
+router.delete("/:id", isAdmin, deleteHotel)
 
 export default router

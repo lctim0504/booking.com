@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 import express from "express"
 import dotenv from "dotenv"
-
+import cookieParser from "cookie-parser"
 const app = express()
 dotenv.config()
 //connect to mongoDB
@@ -33,12 +33,17 @@ import roomsApiRoute from "./apiRoutes/Room.js"
 import usersApiRoute from "./apiRoutes/User.js"
 import authApiRoute from "./apiRoutes/Auth.js"
 
+app.use(cookieParser()) 
+// cookieParser() 中間件通常應該寫在需要讀取 cookie 的中間件之前，
+// 因為它會解析 cookie 並把解析後的資訊存儲到 req.cookies 中，
+// 讓需要使用 cookie 的中間件能夠使用。
 app.use(express.json())
 
 app.use("/api/v1/hotels", hotelsApiRoute)
 app.use("/api/v1/rooms", roomsApiRoute)
 app.use("/api/v1/users", usersApiRoute)
 app.use("/api/v1/auth", authApiRoute)
+
 
 
 
