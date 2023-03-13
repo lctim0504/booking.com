@@ -10,10 +10,9 @@ import PopularHotels from '../subcomponents/PopularHotels'
 const Feature = () => {
 
     const { data, loading, error } = UseFetch("/hotels")
-    //const { data, loading, error } = UseFetch("/hotels?popularHotel=true")
     const typeUrl = `/hotels/filter?type=${CategoriesType.map((type) => type.name)}`
     const citiesUrl = `/hotels/filter?city=${CategoriesCities.map((city) => city.name)}`
-    console.log(typeUrl, citiesUrl)
+    //console.log(typeUrl, citiesUrl)
 
     return (
         <div className='feature'>
@@ -39,7 +38,7 @@ const Feature = () => {
                     <h2>人氣民宿、公寓類型住宿</h2>
                 </div>
                 <div className="listItems">
-                    <PopularHotels dataArray={data} />
+                    <PopularHotels dataArray={data} loading={true} />
                 </div>
             </div>
         </div>

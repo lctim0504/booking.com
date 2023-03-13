@@ -1,7 +1,6 @@
-.listContainer {
+.categories {
     display: flex;
-    gap: 10px;
-    padding: 0px 15px;
+    gap: 10px; //新增的 
 
     .item {
         img {

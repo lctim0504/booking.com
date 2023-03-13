@@ -13,7 +13,7 @@ const Categories = ({ dataArray, url }) => {
                             {item.name}
                         </div>
                         <div className="desc">
-                            {`${data[index]}間住宿`}
+                            {loading ? <Skeleton type="Amount" /> : `${data[index]}間住宿`}
                         </div>
                     </div>
                 </div>)}
