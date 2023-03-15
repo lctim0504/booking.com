@@ -80,7 +80,7 @@ const Header = () => {
   }
 
 
-  console.log(destination, dates, conditions)
+  // console.log(destination, dates, conditions)
   return (
     <div className='header'>
       <div className="headerContainer">

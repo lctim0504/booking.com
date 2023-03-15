@@ -1,3 +1,4 @@
+import Skeleton from '../components/Skeleton'
 import useFetch from '../hooks/UseFetch'
 import "./categories.scss"
 
